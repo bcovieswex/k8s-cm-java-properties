@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: "demo"
+  name: "demo"
+spec:
+  serviceName: "demo"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "demo"
+  template:
+    metadata:
+      labels:
+        app: "demo"
+    spec:
+      containers:
+        - name: "demo"
+          image: cm:latest
+          imagePullPolicy: Never
+          env:
+            - name: "NAME_EXAMPLE"
+              value: "00000000000"
+          volumeMounts:
+            - name: "demo-configs"
+              mountPath: /configs/demo
+      volumes:
+        - name: "demo-configs"
+          configMap:
+            name: "demo-configs"

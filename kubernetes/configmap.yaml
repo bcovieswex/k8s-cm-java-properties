@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-configs
+data:
+  app.properties: |
+    spring.application.name=${NAME_EXAMPLE}
+    management.endpoints.web.exposure.include=*
+    management.endpoint.env.show-values=ALWAYS
